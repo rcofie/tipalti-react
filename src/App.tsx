@@ -1,12 +1,34 @@
-function App() {
+import { useEffect, useState } from "react";
+import { Table, Expense } from "./Table";
+
+function App(): JSX.Element {
+  const [data, setData] = useState<Expense[]>([]);
+
+  useEffect(() => {
+    async function callAPI(): Promise<void> {
+      try {
+        const response = await fetch(
+          "https://expenses-backend-mu.vercel.app/expenses",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Username: "Rebecca Cofie",
+            },
+          }
+        );
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error("Failed to receive response:", error);
+        alert("Failed to load table data");
+      }
+    }
+    callAPI();
+  }, []);
+
   return (
     <div id="template-text">
-      <h1>React Starter Template - TypeScript</h1>
-      <p>
-        For JavaScript please use{" "}
-        <a href="https://github.com/ruairidhflint/react-template">this</a>{" "}
-        template
-      </p>
+      <Table expenses={data} />
     </div>
   );
 }

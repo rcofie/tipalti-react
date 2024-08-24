@@ -68,3 +68,25 @@ h6 {
   margin: 20px;
   padding: 0;
 }
+
+.header {
+  font-weight: bold;
+  font-size: larger;
+  padding-top: 1rem;
+}
+
+td,
+th {
+  padding-right: 2rem;
+  text-align: left;
+}
+
+td {
+  font-size: 1.1rem;
+}
+
+table {
+  width: 100%;
+  border-top: 1px solid black;
+  padding-top: 1rem;
+}
